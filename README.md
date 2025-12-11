@@ -4,6 +4,7 @@
 
 - You can use this template rather than https://github.com/new/import (what's in here: https://www.updatingdata.org/githubactions/copytemplate/)
 - Should manually rename the .Rproj
+- Run usethis::use_github_action() rather than usethis::use_github_actions(), which has been deprecated
 - The basic (tutorial) version of the repository is useful for learning the basics, but for a more complex/realistic example, see https://github.com/weecology/PortalData 
 - The  R-CMD-check.yaml file needs to be edited, as per https://github.com/weecology/livedat-github-actions/issues/4
 - data checks (aka automated tests, "unit tests") will live in the testthat directory
