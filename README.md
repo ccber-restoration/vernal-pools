@@ -8,11 +8,11 @@
 
 ## Data usage notes
 - Each row should represent the water depth for a specific vernal pool at a particular timepoint
-- Location indicates the general area where a vernal pool is located (e.g. "Del Sol & Camino Corto")
-- Vernal Pool Name or ID should be the unique identifier for each vernal pool. The form does not currently include any validation for this field, so cleaning is required.
-- Water level is recorded in inches (FJ- it looks like the precision is to the nearest 0.25 inches based on a staff gauge). There are sometimes issues with the staff gauge being damaged, or with sedimentation/vegetation accumulating on the bottom of the pool.
-- Survey123 automatically records geographic coordinates based on the device (tablet or smartphone) gps. This means that every row has a slightly different recorded location, and in some cases the location recorded does not correspond to the vernal pool location, and instead to wherever the monitor was when entering data.
-- The comments field contains information on vernal pool conditions and monitoring irregularities.
+- **Location** indicates the general area where a vernal pool is located (e.g. "Del Sol & Camino Corto"). This field is based on a drop-down menu so the values are standardized (clean)
+- **Vernal Pool Name or ID** should be the unique identifier for each vernal pool. The form does not currently include any validation for this field, so cleaning is required.
+- **Water level** is recorded in inches (FJ- it looks like the precision is to the nearest 0.25 inches based on a staff gauge). There are sometimes issues with the staff gauge being damaged, or with sedimentation/vegetation accumulating on the bottom of the pool.
+- The comments field contains information on vernal pool conditions and monitoring irregularities. "Note any observations of interest about the vernal pool, such as appearance or condition of native or weed plants, wildlife, etc. (optional - include a photo in the box below)."
+-  Survey123 automatically records geographic coordinates based on the device (tablet or smartphone) gps. This means that every row has a slightly different recorded location, and in some cases the location recorded does not correspond to the vernal pool location, and instead to wherever the monitor was when entering data.
  
 
 ## Notes related to the Updating Data set-up
