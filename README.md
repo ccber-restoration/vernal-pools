@@ -1,6 +1,3 @@
-[![License](http://i.creativecommons.org/p/zero/1.0/88x31.png)](https://raw.githubusercontent.com/weecology/livedat/master/LICENSE)
-
-
 # Overview
 
 - The purpose of this repository is to work with vernal pool depth data. Vernal pools are monitored weekly during the wet season using a Survey123 Form ("CCBER Vernal Pool Hydrology")
@@ -15,7 +12,7 @@
 -  Survey123 automatically records geographic coordinates based on the device (tablet or smartphone) gps. This means that every row has a slightly different recorded location, and in some cases the location recorded does not correspond to the vernal pool location, and instead to wherever the monitor was when entering data.
  
 
-## Notes related to the Updating Data set-up
+# Notes related to the Updating Data set-up
 
 # Notes from Francis Joyce, for Cheadle Center usage:
 
@@ -29,6 +26,10 @@
 # Notes from the template:
 
 # livedat with GitHub Actions
+
+[![License](http://i.creativecommons.org/p/zero/1.0/88x31.png)](https://raw.githubusercontent.com/weecology/livedat/master/LICENSE)
+
+
 
 This is a **Template Repo** designed to assist in setting up a repository for regularly-updated data 
 (new data are regularly added and need cleaning and curating) **using GitHub Actions** for continuous integration. This was forked from the original [Template Repo](https://github.com/weecology/livedat) **using Travis CI** for continuous integration at version 0.11.2. Read [our PLOS Biology paper](https://doi.org/10.1371/journal.pbio.3000125) for more details.
