@@ -1,0 +1,75 @@
+location,survey123_field_name,survey123_location,vernal_pool_id,vp_unique_id
+NCOS,pool_id_ncos,ncos,1,ncos_1
+NCOS,pool_id_ncos,ncos,2,ncos_2
+NCOS,pool_id_ncos,ncos,3,ncos_3
+NCOS,pool_id_ncos,ncos,4,ncos_4
+NCOS,pool_id_ncos,ncos,5,ncos_5
+NCOS,pool_id_ncos,ncos,6,ncos_6
+NCOS,pool_id_ncos,ncos,7,ncos_7
+NCOS,pool_id_ncos,ncos,8,ncos_8
+West Campus,pool_id_west_campus,west_campus,1,west_campus_1
+West Campus,pool_id_west_campus,west_campus,4,west_campus_4
+West Campus,pool_id_west_campus,west_campus,6,west_campus_6
+West Campus,pool_id_west_campus,west_campus,8,west_campus_8
+West Campus,pool_id_west_campus,west_campus,9,west_campus_9
+West Campus,pool_id_west_campus,west_campus,10,west_campus_10
+West Campus,pool_id_west_campus,west_campus,11,west_campus_11
+West Campus,pool_id_west_campus,west_campus,13,west_campus_13
+South Parcel,pool_id_south_parcel,south_parcel,SWW_1,south_parcel_SWW_1
+South Parcel,pool_id_south_parcel,south_parcel,1,south_parcel_1
+South Parcel,pool_id_south_parcel,south_parcel,2,south_parcel_2
+South Parcel,pool_id_south_parcel,south_parcel,3,south_parcel_3
+South Parcel,pool_id_south_parcel,south_parcel,4,south_parcel_4
+South Parcel,pool_id_south_parcel,south_parcel,5,south_parcel_5
+South Parcel,pool_id_south_parcel,south_parcel,6,south_parcel_6
+South Parcel,pool_id_south_parcel,south_parcel,7,south_parcel_7
+South Parcel,pool_id_south_parcel,south_parcel,8,south_parcel_8
+South Parcel,pool_id_south_parcel,south_parcel,9,south_parcel_9
+Manzanita Village,pool_id_manzanita_village,manzanita_village,San_Miguel,manzanita_village_San_Miguel
+Manzanita Village,pool_id_manzanita_village,manzanita_village,Santa_Rosa,manzanita_village_Santa_Rosa
+Manzanita Village,pool_id_manzanita_village,manzanita_village,Santa_Cruz,manzanita_village_Santa_Cruz
+Manzanita Village,pool_id_manzanita_village,manzanita_village,Santa_Barbara,manzanita_village_Santa_Barbara
+Manzanita Village,pool_id_manzanita_village,manzanita_village,Santa_Catalina,manzanita_village_Santa_Catalina
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,2,delsol_caminocorto_2
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,3,delsol_caminocorto_3
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,4,delsol_caminocorto_4
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,5,delsol_caminocorto_5
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,6,delsol_caminocorto_6
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,7,delsol_caminocorto_7
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,8,delsol_caminocorto_8
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,E,delsol_caminocorto_E
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,F,delsol_caminocorto_F
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,G,delsol_caminocorto_G
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,H,delsol_caminocorto_H
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,M,delsol_caminocorto_M
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,N,delsol_caminocorto_N
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,S,delsol_caminocorto_S
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,T,delsol_caminocorto_T
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,U,delsol_caminocorto_U
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,V,delsol_caminocorto_V
+Camino Corto,pool_id_delsol_caminocorto,delsol_caminocorto,W,delsol_caminocorto_W
+North Parcel,pool_id_north_parcel,north_parcel,3,north_parcel_3
+North Parcel,pool_id_north_parcel,north_parcel,4,north_parcel_4
+North Parcel,pool_id_north_parcel,north_parcel,5,north_parcel_5
+North Parcel,pool_id_north_parcel,north_parcel,6,north_parcel_6
+North Parcel,pool_id_north_parcel,north_parcel,7,north_parcel_7
+North Parcel,pool_id_north_parcel,north_parcel,8,north_parcel_8
+North Parcel,pool_id_north_parcel,north_parcel,9,north_parcel_9
+North Parcel,pool_id_north_parcel,north_parcel,14,north_parcel_14
+North Parcel,pool_id_north_parcel,north_parcel,16,north_parcel_16
+North Parcel,pool_id_north_parcel,north_parcel,19,north_parcel_19
+North Parcel,pool_id_north_parcel,north_parcel,Ph1,north_parcel_Ph1
+Ellwood Mesa,pool_id_ellwood_mesa,ellwood_mesa,Reference,ellwood_mesa_Reference
+Ellwood Mesa,pool_id_ellwood_mesa,ellwood_mesa,1,ellwood_mesa_1
+Ellwood Mesa,pool_id_ellwood_mesa,ellwood_mesa,2,ellwood_mesa_2
+Ellwood Mesa,pool_id_ellwood_mesa,ellwood_mesa,3,ellwood_mesa_3
+Ellwood Mesa,pool_id_ellwood_mesa,ellwood_mesa,4,ellwood_mesa_4
+Ellwood Mesa,pool_id_ellwood_mesa,ellwood_mesa,5,ellwood_mesa_5
+Ellwood Mesa,pool_id_ellwood_mesa,ellwood_mesa,6,ellwood_mesa_6
+Sierra Madre,pool_id_sierra_madre,sierra_madre,Central_Wetland,sierra_madre_Central_Wetland
+Storke Ranch,pool_id_storke_ranch,storke_ranch,2007,storke_ranch_2007
+Storke Ranch,pool_id_storke_ranch,storke_ranch,2017,storke_ranch_2017
+Storke Ranch,pool_id_storke_ranch,storke_ranch,North,storke_ranch_North
+Storke Ranch,pool_id_storke_ranch,storke_ranch,South,storke_ranch_South
+Storke Ranch,pool_id_storke_ranch,storke_ranch,East,storke_ranch_East
+More Mesa,pool_id_more_mesa,more_mesa,Main,more_mesa_Main
