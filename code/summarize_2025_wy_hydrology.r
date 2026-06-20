@@ -4,10 +4,13 @@ library(plotly)
 library(scales)
 library(cowplot)
 
+# for checking locations of anomalous VP IDs
+library(mapview)
+library(sf)
 
-#plot vp depth ----
+# plot vp depth ----
 
-#read in vernal pool hydrology data
+# read in vernal pool hydrology data
 vp_hydrology <- read_csv("data-raw/CCBER_Vernal_Pool_Hydrology_0.csv") %>%
   #extract date and date-time from "Date" column
   mutate(datetime = as.POSIXct(Date, format="%m/%d/%Y %H:%M")) %>%
@@ -19,11 +22,23 @@ vp_hydrology <- read_csv("data-raw/CCBER_Vernal_Pool_Hydrology_0.csv") %>%
   mutate(year = year(date),
          month = month(date),
          day = day(date)) %>%
-  #create column for wateryear
+  # create column for wateryear
   mutate(wy = case_when(
     month >= 10 ~ year + 1,
     .default = year
+  )) %>%
+  # FIXME in SURVEY123
+  # made an educated guess about this issue
+  mutate(water_level_in = case_when(
+    vernal_pool_name_or_id == "8.25" ~ 0.25,
+    .default = water_level_in
+  )) %>%
+  mutate(vernal_pool_name_or_id = case_when(
+    vernal_pool_name_or_id == "8.25" ~ "8",
+    vernal_pool_name_or_id == "01" ~ "1",
+    .default = vernal_pool_name_or_id
   ))
+
 
 unique(vp_hydrology$vernal_pool_name_or_id)
 
@@ -31,12 +46,20 @@ unique(vp_hydrology$vernal_pool_name_or_id)
 #filter data to just ncos & 2025 water year
 vp_ncos_2025_wy <- vp_hydrology %>%
   filter(location == "ncos"
-           #&wy == 2025
-           )
+           & wy == 2025) %>%
+  # There were measurements on 2024-11-22 and 2024-12-09
+  # due to an irrigation leak that left standing water in VP-05
+  # Filter these out
+  filter(date > as.Date("2025-01-01")) %>%
+  mutate(VP = vernal_pool_name_or_id)
 
 
-#plot water depth in 2025 wy for ncos vernal pools
-fig_vp_depth <- ggplot(data = vp_ncos_2025_wy, aes(x = date, y = water_level_in, color = vernal_pool_name_or_id)) +
+vp_data_sf <- st_as_sf(vp_ncos_2025_wy, coords = c("x","y"))
+
+mapview(vp_data_sf)
+
+# plot water depth in 2025 wy for ncos vernal pools
+fig_vp_depth <- ggplot(data = vp_ncos_2025_wy, aes(x = date, y = water_level_in, color = VP)) +
   geom_line(
     #linetype = "dashed"
     ) +
@@ -48,11 +71,10 @@ fig_vp_depth <- ggplot(data = vp_ncos_2025_wy, aes(x = date, y = water_level_in,
   ylab("Water level (in)") +
   xlab("Date") +
   labs(title = "Vernal pool hydrology (2024-2025 water year)") +
-  theme(legend.position = "none")
+  theme(legend.position = "top")
+
 
 fig_vp_depth
-
-ggplotly(fig_vp_depth)
 
 
 #plot precipitation ----
@@ -106,5 +128,72 @@ ggsave(fig_vp_hydrograph,
        #height = 5,
        units = "in")
 
+
+
+# examine first and last days of inundation by VP and water year
+inundation_2025 <- vp_ncos_2025_wy %>%
+  filter(water_level_in > 0) %>%
+  group_by(vernal_pool_name_or_id) %>%
+  summarize(date_first = min(date),
+            date_last = max(date)) %>%
+  ungroup() %>%
+  mutate(wet_interval = date_last- date_first)
+
+
+inundation_days <- vp_hydrology %>%
+  filter(location == "ncos") %>%
+  filter(wy < 2026) %>%
+  filter(vernal_pool_name_or_id != "West Pond") %>%
+  filter(vernal_pool_name_or_id != "West pond") %>%
+  filter(vernal_pool_name_or_id != "Western pond") %>%
+  filter(vernal_pool_name_or_id %in% c("1", "2", "3", "4", "5", "6", "7", "8", "9")) %>%
+  filter(water_level_in > 0) %>%
+  filter(date != as.Date("2024-11-22")) %>%
+  group_by(vernal_pool_name_or_id, wy) %>%
+  summarize(date_first = min(date),
+            date_last = max(date)) %>%
+  ungroup() %>%
+  mutate(wet_interval = date_last- date_first) %>%
+  mutate(Vernal_Pool = vernal_pool_name_or_id) %>%
+  mutate(wy_factor = as.factor(wy))
+
+# recreate inundation figure
+
+# by year (temporal patterns)
+fig_inundation_all_years <- ggplot(data = inundation_days, aes(x = wy, y = wet_interval, fill = Vernal_Pool)) +
+  geom_col(position = position_dodge()) +
+  scale_y_continuous(limits = c(0,200), expand = c(0,0)) +
+  scale_x_continuous(breaks = seq(2019,2025, by = 1)) +
+  xlab("Water year") +
+  ylab("Inundation period (days)") +
+  theme_cowplot() +
+  geom_hline(yintercept = 100, linetype = "dashed")
+
+
+fig_inundation_all_years
+
+ggsave(fig_inundation_all_years,
+       filename = paste("figures/vp_inundation_period_",
+                        format(Sys.time(), "%Y-%m-%d"),
+                        ".png"),
+       bg = "white",
+       width = 7,
+       height = 5,
+       units = "in")
+
+
+# by year
+
+# by pool
+
+fig_inundation_by_pool <- ggplot(data = inundation_days, aes(x = Vernal_Pool, y = wet_interval, fill = wy_factor)) +
+  geom_col(position = position_dodge()) +
+  scale_y_continuous(limits = c(0,200), expand = c(0,0)) +
+  xlab("Vernal Pool") +
+  ylab("Inundation period (days)") +
+  theme_cowplot() +
+  geom_hline(yintercept = 100, linetype = "dashed")
+
+fig_inundation_by_pool
 
 
