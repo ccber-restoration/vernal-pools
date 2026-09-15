@@ -92,7 +92,7 @@ fig_vp_hydrograph
 
 #write to file
 ggsave(fig_vp_hydrograph,
-       filename = paste0("figures/wy_",wy_current,"_vp_hydrograph",
+       filename = paste0("figures/2026/",wy_current,"_vp_hydrograph_",
                         format(Sys.time(), "%Y-%m-%d"),
                         ".pdf"),
 
@@ -140,7 +140,7 @@ inundation_days <- vp_hydrology %>%
 
 # by year (temporal patterns)
 fig_inundation_all_years <- ggplot(data = inundation_days, aes(x = wy, y = wet_interval, fill = Vernal_Pool)) +
-  geom_col(position = position_dodge(), color = "black") +
+  geom_col(position = position_dodge()) +
   scale_y_continuous(limits = c(0,NA), expand = c(0,0)) +
   scale_x_continuous(breaks = seq(2019,wy_current, by = 1)) +
   xlab("Water year") +
@@ -153,7 +153,7 @@ fig_inundation_all_years
 
 # save to file
 ggsave(fig_inundation_all_years,
-       filename = paste("figures/vp_inundation_period_through_", wy_current, "_",
+       filename = paste0("figures/",wy_current,"/vp_inundation_period_through_",wy_current,"_",
                         format(Sys.time(), "%Y-%m-%d"),
                         ".png"),
        bg = "white",
