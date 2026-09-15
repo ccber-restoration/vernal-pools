@@ -12,8 +12,8 @@ library(sf)
 
 wy_current <- 2026
 
-source("code/00_general_vp_hydrology_cleaning.R")
-
+# read in processed data as of 2026-09-15 (suffix is download date, not processing date)
+vp_hydrology <- read_rds("data-processed/ncos_vp_hydrology_2026-09-14.rds")
 
 #filter data to just ncos & 2025 water year
 vp_ncos_2026_wy <- vp_hydrology %>%
@@ -23,10 +23,13 @@ vp_ncos_2026_wy <- vp_hydrology %>%
   # filter out VP-009 (not monitored for depth consistently over the years)
   filter(vernal_pool_name_or_id != "9")
 
+
 # make data into a spatial object
 vp_data_sf <- st_as_sf(vp_ncos_2026_wy, coords = c("x","y"))
 
 mapview(vp_data_sf, map.types = "Esri.WorldImagery")
+
+# TODO- update date limits based on rainfall data
 
 # plot water depth in 2025 wy for ncos vernal pools
 fig_vp_depth <- ggplot(data = vp_ncos_2026_wy, aes(x = date, y = water_level_in, color = VP)) +
@@ -35,7 +38,8 @@ fig_vp_depth <- ggplot(data = vp_ncos_2026_wy, aes(x = date, y = water_level_in,
     ) +
   geom_point() +
   scale_x_date(date_breaks = "1 month",
-               date_labels = "%b") +
+               date_labels = "%b",
+               limits = c(as.Date("2025-09-15"), as.Date("2026-06-15")))+
   theme_cowplot() +
   ylab("Water level (in)") +
   xlab("Date") +
@@ -48,30 +52,29 @@ fig_vp_depth
 
 #plot precipitation ----
 
-# TODO- use updated rain data file
 #read in rainfall data
 #read in NOAA daily summaries
-daily_rain <- read_csv(file = "data-raw/NOAA_daily_summaries_USW00053152_full_2025-12-09.csv") %>%
+daily_rain <- read_csv(file = "data-raw/NOAA_daily_summaries_USW00053152_full_2026-09-05.csv") %>%
   clean_names() %>%
   #create columns for month and year
   mutate(year = year(date),
          month = month(date),
          day = day(date)) %>%
-  #create column for wateryear
+  #create column for wateryear, using local definition (starts in Sep)
   mutate(wy = case_when(
-    month >= 10 ~ year + 1,
+    month >= 9 ~ year + 1,
     .default = year
   ))
 
-rain_wy_2025 <- daily_rain %>%
-  filter(wy == 2025)
+rain_wy_2026 <- daily_rain %>%
+  filter(wy == wy_current)
 
-fig_precip <- ggplot(data = rain_wy_2025, aes(x = date, y = prcp)) +
+fig_precip <- ggplot(data = rain_wy_2026, aes(x = date, y = prcp)) +
   geom_col(color = "darkblue") +
   ylab("Daily rainfall (in)") +
   xlab("Date") +
   scale_x_date(breaks = "1 months", date_labels = "%b",
-               limits = c(as.Date("2024-11-15"), as.Date("2025-05-01"))) +
+               limits = c(as.Date("2025-09-15"), as.Date("2026-06-15"))) +
   scale_y_continuous(expand = c(0,0)) +
   theme_cowplot()
 
@@ -137,7 +140,7 @@ inundation_days <- vp_hydrology %>%
 
 # by year (temporal patterns)
 fig_inundation_all_years <- ggplot(data = inundation_days, aes(x = wy, y = wet_interval, fill = Vernal_Pool)) +
-  geom_col(position = position_dodge()) +
+  geom_col(position = position_dodge(), color = "black") +
   scale_y_continuous(limits = c(0,NA), expand = c(0,0)) +
   scale_x_continuous(breaks = seq(2019,wy_current, by = 1)) +
   xlab("Water year") +
