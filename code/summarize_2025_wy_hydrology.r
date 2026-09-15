@@ -91,7 +91,7 @@ fig_vp_hydrograph
 
 #write to file
 ggsave(fig_vp_hydrograph,
-       filename = paste("figures/wy_2025_vp_hydrograph",
+       filename = paste0("figures/2025/wy_2025_vp_hydrograph",
                         format(Sys.time(), "%Y-%m-%d"),
                         ".pdf"),
 
@@ -151,7 +151,7 @@ fig_inundation_all_years <- ggplot(data = inundation_days, aes(x = wy, y = wet_i
 fig_inundation_all_years
 
 ggsave(fig_inundation_all_years,
-       filename = paste("figures/vp_inundation_period_",
+       filename = paste0("figures/2025/vp_inundation_period_",
                         format(Sys.time(), "%Y-%m-%d"),
                         ".png"),
        bg = "white",
