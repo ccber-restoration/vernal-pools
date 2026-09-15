@@ -67,3 +67,9 @@ vp_hydrology <- read_csv(dir, guess_max = 9230) %>%
 
 # check unique pool id values (need to be combined with location to uniquely identify pools)
 unique(vp_hydrology$vernal_pool_name_or_id)
+
+# write processed data to file
+
+write_rds(file = paste0("data-processed/ncos_vp_hydrology_",
+                 date_download, ".rds"),
+          vp_hydrology)
